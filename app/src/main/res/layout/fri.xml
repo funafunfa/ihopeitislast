@@ -1,6 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:baselineAligned="false">
+
+    <TextView
+        android:text="@string/fifth_day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:gravity="center"
+        android:includeFontPadding="false" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="50px">
+
+            <TextView
+                android:id="@+id/one"
+                android:text="@string/one"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/first"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="20px">
+
+            <TextView
+                android:text="@string/two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/two" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/second"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="20px">
+
+            <TextView
+                android:text="@string/three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/three" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/third"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20px"
+            android:layout_marginLeft="50px">
+
+            <TextView
+                android:text="@string/four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/four" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fourth"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="20px">
+
+            <TextView
+                android:text="@string/five"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/five" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fifth"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="20px">
+
+            <TextView
+                android:text="@string/six"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/six" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/sixth"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="20px">
+
+            <TextView
+                android:text="@string/seven"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/seven" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/seventh"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+        </TableRow>
+    </TableLayout>
 
 </LinearLayout>

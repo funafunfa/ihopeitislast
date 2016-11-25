@@ -84,4 +84,9 @@
     <string name="five">5.</string>
     <string name="six">6.</string>
     <string name="seven">7.</string>
+    <string name="first_day">Monday</string>
+    <string name="second_day">Tuesday</string>
+    <string name="third_day">Wednesday</string>
+    <string name="fouth_day">Thursday</string>
+    <string name="fifth_day">Friday</string>
 </resources>
