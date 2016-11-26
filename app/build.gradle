@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
+    useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.example.dmitriy.schedulenew"
         minSdkVersion 15
@@ -29,5 +30,7 @@ dependencies {
     compile 'com.android.support:design:25.0.0'
     compile 'com.android.support:support-v4:25.0.0'
     compile 'com.android.support:support-vector-drawable:25.0.0'
+    compile 'org.apache.httpcomponents:httpcore:4.4.1'
+    compile 'org.apache.httpcomponents:httpclient:4.5'
     testCompile 'junit:junit:4.12'
 }

@@ -12,7 +12,8 @@
         android:id="@+id/name"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:gravity="center"
-        android:includeFontPadding="false" />
+        android:includeFontPadding="false"
+        android:paddingTop="50px"/>
 
     <TableLayout
         android:layout_width="match_parent"

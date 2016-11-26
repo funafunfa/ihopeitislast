@@ -1,6 +1,7 @@
 package com.example.dmitriy.schedulenew;
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -68,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClick(MenuItem item) {
+        Intent intent = new Intent(MainActivity.this, settings.class);
+        startActivity(intent);
     }
 
     /**
