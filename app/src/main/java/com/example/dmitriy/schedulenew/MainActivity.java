@@ -26,8 +26,9 @@ import com.example.dmitriy.schedulenew.fragments.wed;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    public static final String APP_PREFERENCES = "mysettings";
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    public static final String APP_PREFERENCES_PS_1401_1 = "PS_1401_1";
     private ViewPager mViewPager;
 
     @Override

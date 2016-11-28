@@ -26,7 +26,17 @@ public class settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         Log.d("me","here");
-        new LoadAllProducts().execute();
+
+        //new LoadAllProducts("3","PS_1401").execute();
+        LoadAllProducts first = new LoadAllProducts("3","PS_1401");
+        first.execute();
+        Log.e("first","done");
+        params.clear();
+
+        LoadAllProducts second = new LoadAllProducts("2","PS_1401");
+        second.execute();
+        Log.e("second   ","done");
+        //new LoadAllProducts("2","PS_1401").execute();
 
     }
 
@@ -38,6 +48,9 @@ public class settings extends AppCompatActivity {
 
     JSONArray products = null;
     // JSON Node names
+    List<NameValuePair> params = new ArrayList<>();
+
+
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "product";
     private static final String TAG_DAY = "day";
@@ -61,6 +74,12 @@ public class settings extends AppCompatActivity {
         /**
          * Before starting background thread Show Progress Dialog
          */
+        public LoadAllProducts(String day, String group_name){
+            super();
+            params.add(new BasicNameValuePair("day_num",day));
+            params.add(new BasicNameValuePair("group",group_name));
+
+        }
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -76,41 +95,41 @@ public class settings extends AppCompatActivity {
          */
         protected String doInBackground(String... args) {
             // Building Parameters
-            List<NameValuePair> params = new ArrayList<>();
-            params.add(new BasicNameValuePair("day_num","3"));
-            params.add(new BasicNameValuePair("group","PS_1401"));
-            // getting JSON string from URL
-            Log.e("damn","good");
-            JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
-            Log.e("damn","ok");
-            // Check your log cat for JSON reponse
-            Log.d("All Products: ", json.toString());
-
-            try {
-                // Checking for SUCCESS TAG
-                int success = json.getInt(TAG_SUCCESS);
-
-                if (success == 1) {
-                    Log.e("damn","puk");
-                    // products found
-                    // Getting Array of Products
-                    products = json.getJSONArray("product");
-                    Log.e("tag",products.toString());
-                    // looping through All Products
-                    //for (int i = 0; i < products.length(); i++) {
-                        //JSONObject c = products.getJSONObject(i);
-                         //String each json item in variable
 
 
 
-                    //}
+                // getting JSON string from URL
+                Log.e("damn", "good");
+
+                JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
+                Log.e("damn", "ok");
+                // Check your log cat for JSON reponse
+                Log.d("All Products: ", json.toString());
+
+                try {
+                    // Checking for SUCCESS TAG
+                    int success = json.getInt(TAG_SUCCESS);
+
+                    if (success == 1) {
+                        products = json.getJSONArray("product");
+                        //for (int i = 0; i <products.length(); i++){
+                        JSONObject c = products.getJSONObject(0);
+                        Log.e("damn", "puk");
+                        // products found
+                        // Getting Array of Products
+
+                        Log.e("tag", c.getString(TAG_FIRST).toString());
+                        //Log.e("tagz", .get(0).toString());
+                        //Log.e("tagz", products.get(0).toString());
+
+                        //Log.e("rag",products.getJSONObject(0).toString());
+                    }
+                    Log.e("damn", "bAAFASFASF");
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                Log.e("damn","bAAFASFASF");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            Log.e("damn","gzzz");
-            return null;
+                Log.e("damn", "gzzz");
+                return null;
         }
 
 
@@ -120,6 +139,7 @@ public class settings extends AppCompatActivity {
         protected void onPostExecute(String file_url) {
             // dismiss the dialog after getting all products
             pDialog.dismiss();
+
             // updating UI from Background Thread
             runOnUiThread(new Runnable() {
                 public void run() {
