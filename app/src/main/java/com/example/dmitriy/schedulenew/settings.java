@@ -26,46 +26,23 @@ public class settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         Log.d("me","here");
-
         //new LoadAllProducts("3","PS_1401").execute();
-        LoadAllProducts first = new LoadAllProducts("3","PS_1401");
-        first.execute();
-        Log.e("first","done");
-        params.clear();
-
-        LoadAllProducts second = new LoadAllProducts("2","PS_1401");
-        second.execute();
-        Log.e("second   ","done");
-        //new LoadAllProducts("2","PS_1401").execute();
-
+        LoadAllProducts first = new LoadAllProducts();
+        first.execute("1401A");
     }
-
+    private static final String TAG_SUCCESS = "success";
     private ProgressDialog pDialog;
     static JSONParser jParser = new JSONParser();
     static ArrayList<HashMap<String, String>> productsList;
 
-    private static String url_all_products = "http://193.151.106.187/schedule/get_product.php";
+
+    private static String url_all_products = "http://193.151.106.187/android/schedule/get_product.php";
 
     JSONArray products = null;
-    // JSON Node names
     List<NameValuePair> params = new ArrayList<>();
 
 
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_PRODUCTS = "product";
-    private static final String TAG_DAY = "day";
-    private static final String TAG_FIRST = "first";
-    private static final String TAG_SECOND = "second";
-    private static final String TAG_THIRD = "third";
-    private static final String TAG_FOURTH = "fourth";
-    private static final String TAG_FIFTH = "fifth";
-    private static final String TAG_SIXTH = "sixth";
-    private static final String TAG_SEVENTH = "seventh";
-    private static final String TAG_EDIT = "edit_time";
-    private static final String TAG_GROUP = "group";
 
-    public static final String APP_PREFERENCES = "mysettings";
-    public static final String APP_PREFERENCES_STRING = "string";
     static SharedPreferences preference;
     static JSONObject json;
 
@@ -74,12 +51,6 @@ public class settings extends AppCompatActivity {
         /**
          * Before starting background thread Show Progress Dialog
          */
-        public LoadAllProducts(String day, String group_name){
-            super();
-            params.add(new BasicNameValuePair("day_num",day));
-            params.add(new BasicNameValuePair("group",group_name));
-
-        }
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -95,42 +66,30 @@ public class settings extends AppCompatActivity {
          */
         protected String doInBackground(String... args) {
             // Building Parameters
+            for(String arg :args) {
+                Log.e("dsad",arg);
+                params.add(new BasicNameValuePair("group", arg));
+            }
+            JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
 
+            try {
+                int success = json.getInt(TAG_SUCCESS);
+                     if (success == 1) {
+                         products = json.getJSONArray("lessons");
+                         Log.e("a","b");
+                         Log.e("a",products.toString());
 
+                         for (int i = 0; i < products.length(); i++) {
+                             JSONObject c = products.getJSONObject(i);
+                                //Log.e("ad",c.getString("day"));
+                         }
 
-                // getting JSON string from URL
-                Log.e("damn", "good");
-
-                JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
-                Log.e("damn", "ok");
-                // Check your log cat for JSON reponse
-                Log.d("All Products: ", json.toString());
-
-                try {
-                    // Checking for SUCCESS TAG
-                    int success = json.getInt(TAG_SUCCESS);
-
-                    if (success == 1) {
-                        products = json.getJSONArray("product");
-                        //for (int i = 0; i <products.length(); i++){
-                        JSONObject c = products.getJSONObject(0);
-                        Log.e("damn", "puk");
-                        // products found
-                        // Getting Array of Products
-
-                        Log.e("tag", c.getString(TAG_FIRST).toString());
-                        //Log.e("tagz", .get(0).toString());
-                        //Log.e("tagz", products.get(0).toString());
-
-                        //Log.e("rag",products.getJSONObject(0).toString());
-                    }
-                    Log.e("damn", "bAAFASFASF");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                Log.e("damn", "gzzz");
-                return null;
-        }
+                        }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+         }
 
 
         /**
