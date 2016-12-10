@@ -90,4 +90,9 @@
     <string name="fouth_day">Thursday</string>
     <string name="fifth_day">Friday</string>
     <string name="settings_text_group_spinner">Group name</string>
+
+    <string-array name="groups">
+        <item>1401A</item>
+        <item>1501B</item>
+    </string-array>
 </resources>

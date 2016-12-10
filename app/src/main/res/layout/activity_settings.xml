@@ -28,4 +28,14 @@
         android:id="@+id/textView"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:id="@+id/button"
+        android:onClick="onClick" />
+
 </RelativeLayout>
