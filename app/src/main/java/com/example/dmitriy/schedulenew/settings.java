@@ -3,6 +3,7 @@ package com.example.dmitriy.schedulenew;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -39,17 +40,22 @@ public class settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        Log.d("me","here");
-        mSettings = getSharedPreferences(APP_PREFERENCES_1401A, Context.MODE_PRIVATE);
-        mSettings = getSharedPreferences(APP_PREFERENCES_1501B, Context.MODE_PRIVATE);
+        Log.d("me", "here");
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        //mSettings = getSharedPreferences(APP_PREFERENCES_1501B, Context.MODE_PRIVATE);
 
-        final Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
 
         ArrayAdapter<?> adapter =
                 ArrayAdapter.createFromResource(this, R.array.groups, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        try{
+            Log.e("AGSKDAHSJ", mSettings.getString(APP_PREFERENCES_1401A, ""));
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -67,10 +73,12 @@ public class settings extends AppCompatActivity {
 
     private static String url_all_products = "http://193.151.106.187/android/schedule/get_product.php";
 
+    JSONArray productsB = null;
+    JSONArray productsA = null;
     JSONArray products = null;
     List<NameValuePair> params = new ArrayList<>();
-
-
+    ArrayList arrayList = new ArrayList();
+    Intent intent;
 
     static SharedPreferences preference;
     static JSONObject json;
@@ -79,12 +87,11 @@ public class settings extends AppCompatActivity {
 
         final Spinner spinner = (Spinner)findViewById(R.id.spinner);
         try {
-
             Log.e("ROCK", spinner.getSelectedItem().toString());
             LoadAllProducts load = new LoadAllProducts();
             loader = spinner.getSelectedItem().toString();
             load.execute(loader);
-            Log.e("NIKITA","APP_PREFERENCES_" + loader);
+
         } catch (EnumConstantNotPresentException e){
             e.printStackTrace();
         }
@@ -121,16 +128,16 @@ public class settings extends AppCompatActivity {
             try {
                 int success = json.getInt(TAG_SUCCESS);
                      if (success == 1) {
-                         products = json.getJSONArray("lessons");
-                         Log.e("a","b");
-                         Log.e("a",products.toString());
+                         productsA = json.getJSONArray("lessonsA");
+                         productsB = json.getJSONArray("lessonsB");
 
-                         for (int i = 0; i < products.length(); i++) {
-                             JSONObject c = products.getJSONObject(i);
+                         /*for (int i = 0; i < products.length(); i++) {
+                             //JSONObject c = productsA.getJSONObject(i);
                                 //Log.e("ad",c.getString("day"));
 
 
-                         }
+
+                         }*/
 
                         }
             } catch (JSONException e) {
@@ -146,19 +153,25 @@ public class settings extends AppCompatActivity {
         protected void onPostExecute(String file_url) {
             // dismiss the dialog after getting all products
             SharedPreferences.Editor editor = mSettings.edit();
-
+            intent = new Intent(settings.this, MainActivity.class);
             switch (loader){
-                case "1401A":
-                    editor.putString(APP_PREFERENCES_1401A, products.toString());
+                case "1401":
+                    editor.putString(APP_PREFERENCES_1401A, productsA.toString());
+                    editor.putString(APP_PREFERENCES_1401B, productsB.toString());
                     editor.apply();
+
                     break;
-                case "1501B":
-                    editor.putString(APP_PREFERENCES_1501B, products.toString());
+                case "1501":
+                    editor.putString(APP_PREFERENCES_1501A, productsA.toString());
+                    editor.putString(APP_PREFERENCES_1501B, productsB.toString());
                     editor.apply();
                     break;
             }
+            intent.putExtra("group",loader);
+            editor.putBoolean("FIRST",true);
+            editor.apply();
             pDialog.dismiss();
-
+            startActivity(intent);
 
 
 

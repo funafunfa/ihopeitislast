@@ -1,6 +1,7 @@
 package com.example.dmitriy.schedulenew;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,16 +26,52 @@ import com.example.dmitriy.schedulenew.fragments.thu;
 import com.example.dmitriy.schedulenew.fragments.tue;
 import com.example.dmitriy.schedulenew.fragments.wed;
 
+import static com.example.dmitriy.schedulenew.settings.APP_PREFERENCES;
+import static com.example.dmitriy.schedulenew.settings.APP_PREFERENCES_1401A;
+import static com.example.dmitriy.schedulenew.settings.APP_PREFERENCES_1401B;
+import static com.example.dmitriy.schedulenew.settings.APP_PREFERENCES_1501A;
+import static com.example.dmitriy.schedulenew.settings.APP_PREFERENCES_1501B;
+import static com.example.dmitriy.schedulenew.settings.mSettings;
+
 public class MainActivity extends AppCompatActivity {
 
-    public static final String APP_PREFERENCES = "mysettings";
+    //public static final String APP_PREFERENCES = "mysettings";
     private SectionsPagerAdapter mSectionsPagerAdapter;
     public static final String APP_PREFERENCES_PS_1401_1 = "PS_1401_1";
     private ViewPager mViewPager;
-
+    public static String A, B;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+
+        try{
+
+            if ((mSettings.contains(APP_PREFERENCES_1401A)) | (mSettings.contains(APP_PREFERENCES_1401B))){
+                Log.e("A1", mSettings.getString(APP_PREFERENCES_1401A, ""));
+                Log.e("B1", mSettings.getString(APP_PREFERENCES_1401B, ""));
+            } else {
+                Log.e("Mission failed","try next time");
+            }
+
+            if ((mSettings.contains(APP_PREFERENCES_1501A)) | (mSettings.contains(APP_PREFERENCES_1501B))) {
+                Log.e("C1", mSettings.getString(APP_PREFERENCES_1501A, ""));
+                Log.e("D1", mSettings.getString(APP_PREFERENCES_1501B, ""));
+            } else {
+                Log.e("Mission faile!!d","try next time");
+            }
+
+            if(mSettings.contains("FIRST")) {
+                backdata = getIntent().getStringExtra("group");
+                Log.e("YABADADU", backdata);
+            }else{
+                backdata = "1401";
+                Log.e("NOT YABADADU", backdata);
+            }
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -46,9 +84,11 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+
 
     }
-
+    public static String backdata = null;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

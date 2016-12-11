@@ -10,7 +10,9 @@ import android.widget.TextView;
 import com.example.dmitriy.schedulenew.R;
 
 import org.json.JSONArray;
+import org.w3c.dom.Text;
 
+import static com.example.dmitriy.schedulenew.MainActivity.A;
 import static com.example.dmitriy.schedulenew.settings.APP_PREFERENCES_1401A;
 import static com.example.dmitriy.schedulenew.settings.mSettings;
 
@@ -19,13 +21,11 @@ public class mon extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.mon, container,false);
+        TextView first = (TextView)rootView.findViewById(R.id.first);
 
-        if (mSettings.contains(APP_PREFERENCES_1401A)) {
-            JSONArray array = new JSONArray();
-            String arrays = mSettings.getString(APP_PREFERENCES_1401A,"");
-            array = ar
 
-        }
+
+
         return rootView;
 
     }

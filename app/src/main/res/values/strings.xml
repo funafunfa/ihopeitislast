@@ -92,7 +92,7 @@
     <string name="settings_text_group_spinner">Group name</string>
 
     <string-array name="groups">
-        <item>1401A</item>
-        <item>1501B</item>
+        <item>1401</item>
+        <item>1501</item>
     </string-array>
 </resources>
