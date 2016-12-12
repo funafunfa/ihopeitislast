@@ -26,6 +26,9 @@ import com.example.dmitriy.schedulenew.fragments.thu;
 import com.example.dmitriy.schedulenew.fragments.tue;
 import com.example.dmitriy.schedulenew.fragments.wed;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static com.example.dmitriy.schedulenew.settings.APP_PREFERENCES;
 import static com.example.dmitriy.schedulenew.settings.APP_PREFERENCES_1401A;
 import static com.example.dmitriy.schedulenew.settings.APP_PREFERENCES_1401B;
@@ -49,30 +52,33 @@ public class MainActivity extends AppCompatActivity {
         try{
 
             if ((mSettings.contains(APP_PREFERENCES_1401A)) | (mSettings.contains(APP_PREFERENCES_1401B))){
-                Log.e("A1", mSettings.getString(APP_PREFERENCES_1401A, ""));
-                Log.e("B1", mSettings.getString(APP_PREFERENCES_1401B, ""));
+                //Log.e("A1", mSettings.getString(APP_PREFERENCES_1401A, ""));
+                //Log.e("B1", mSettings.getString(APP_PREFERENCES_1401B, ""));
             } else {
                 Log.e("Mission failed","try next time");
             }
 
             if ((mSettings.contains(APP_PREFERENCES_1501A)) | (mSettings.contains(APP_PREFERENCES_1501B))) {
-                Log.e("C1", mSettings.getString(APP_PREFERENCES_1501A, ""));
-                Log.e("D1", mSettings.getString(APP_PREFERENCES_1501B, ""));
+                //Log.e("C1", mSettings.getString(APP_PREFERENCES_1501A, ""));
+                //Log.e("D1", mSettings.getString(APP_PREFERENCES_1501B, ""));
             } else {
                 Log.e("Mission faile!!d","try next time");
             }
 
-            if(mSettings.contains("FIRST")) {
-                backdata = getIntent().getStringExtra("group");
-                Log.e("YABADADU", backdata);
-            }else{
-                backdata = "1401";
-                Log.e("NOT YABADADU", backdata);
-            }
+
         }catch (NullPointerException e){
             e.printStackTrace();
         }
+
+        if(mSettings.contains("FIRST")) {
+            backdata = mSettings.getString("FIRST","");
+            Log.e("YABADADU", backdata);
+        }else{
+            backdata = "1401";
+            Log.e("NOT YABADADU", backdata);
+        }
         setContentView(R.layout.activity_main);
+        this.setTitle(backdata);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -86,6 +92,34 @@ public class MainActivity extends AppCompatActivity {
 
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
+
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+        Date d = new Date();
+
+        String dayOfTheWeek = sdf.format(d);
+
+        if (savedInstanceState == null) {
+            switch (dayOfTheWeek){
+                case ("Monday"):case ("понедельник"):
+                    mViewPager.setCurrentItem(0);
+                    break;
+                case ("Tuesday"):case ("вторник"):
+                    mViewPager.setCurrentItem(1);
+                    break;
+                case ("Wednesday"):case ("среда"):
+                    mViewPager.setCurrentItem(2);
+                    break;
+                case ("Thursday"):case ("четверг"):
+                    mViewPager.setCurrentItem(3);
+                    break;
+                case ("Friday"):case ("пятница"):
+                    mViewPager.setCurrentItem(4);
+                    break;
+                default:
+                    mViewPager.setCurrentItem(0);
+                    break;
+            }
+        }
 
     }
     public static String backdata = null;

@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Schedule</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Расписание</string>
+    <string name="action_settings">Настройки</string>
     <string name="section_format">Hello World from section: %1$d</string>
-    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_settings">Настройки</string>
 
     <!-- Strings related to Settings -->
 
@@ -16,7 +16,7 @@
 
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_display_name">John Smith</string>
-    <string name="set_button">Select</string>
+
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
     <string-array name="pref_example_list_titles">
         <item>Always</item>
@@ -84,13 +84,8 @@
     <string name="five">5.</string>
     <string name="six">6.</string>
     <string name="seven">7.</string>
-    <string name="first_day">Monday</string>
-    <string name="second_day">Tuesday</string>
-    <string name="third_day">Wednesday</string>
-    <string name="fouth_day">Thursday</string>
-    <string name="fifth_day">Friday</string>
-    <string name="settings_text_group_spinner">Group name</string>
-
+    <string name="settings_text_group_spinner">Номер группы</string>
+    <string name="set_button">Выбрать</string>
     <string-array name="groups">
         <item>1301</item>
         <item>1401</item>
@@ -98,9 +93,9 @@
         <item>1601</item>
     </string-array>
 
-    <string name="Monday">Monday</string>
-    <string name="Tuesday">Tuesday</string>
-    <string name="Wednesday">Wednesday</string>
-    <string name="Thursday">Thursday</string>
-    <string name="Friday">Friday</string>
+    <string name="Monday">Понедельник</string>
+    <string name="Tuesday">Вторник</string>
+    <string name="Wednesday">Среда</string>
+    <string name="Thursday">Четверг</string>
+    <string name="Friday">Пятница</string>
 </resources>

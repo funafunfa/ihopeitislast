@@ -14,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.dmitriy.schedulenew.sub.JSONParser;
+import com.example.dmitriy.schedulenew.sub.day;
+import com.google.gson.Gson;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -25,16 +27,41 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+//import static com.example.dmitriy.schedulenew.sub.day.days;
+import static com.example.dmitriy.schedulenew.sub.day.daysA;
+import static com.example.dmitriy.schedulenew.sub.day.daysB;
+
 public class settings extends AppCompatActivity {
     public static final String APP_PREFERENCES = "groups";
+
     public static final String APP_PREFERENCES_1401A = "1401A";
     public static final String APP_PREFERENCES_1401B = "1401B";
+
     public static final String APP_PREFERENCES_1501A = "1501A";
     public static final String APP_PREFERENCES_1501B = "1501B";
+
+    public static final String APP_PREFERENCES_1601A = "1601A";
+    public static final String APP_PREFERENCES_1601B = "1601B";
+
+    public static final String APP_PREFERENCES_1301A = "1301A";
+    public static final String APP_PREFERENCES_1301B = "1301B";
+
+    public static final String APP_PREFERENCES_1402A = "1402A";
+    public static final String APP_PREFERENCES_1402B = "1402B";
+
+    public static final String APP_PREFERENCES_1403A = "1403A";
+    public static final String APP_PREFERENCES_1403B = "1403B";
+
+    public static final String APP_PREFERENCES_1503A = "1503A";
+    public static final String APP_PREFERENCES_1503B = "1503B";
+
+    public static final String APP_PREFERENCES_1502A = "1502A";
+    public static final String APP_PREFERENCES_1502B = "1502B";
     public static String group;
     public static String loader;
     public static SharedPreferences mSettings;
-
+    public static String dataA, dataB;
+   // public static groupss g, ga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +77,6 @@ public class settings extends AppCompatActivity {
                 ArrayAdapter.createFromResource(this, R.array.groups, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
         try{
             Log.e("AGSKDAHSJ", mSettings.getString(APP_PREFERENCES_1401A, ""));
         }catch (NullPointerException e){
@@ -64,7 +90,7 @@ public class settings extends AppCompatActivity {
 
 
     }
-
+    public static String first, second, third,fourth,fifth,sixth,seventh,day,date;
     private static final String TAG_SUCCESS = "success";
     private ProgressDialog pDialog;
     static JSONParser jParser = new JSONParser();
@@ -131,6 +157,50 @@ public class settings extends AppCompatActivity {
                          productsA = json.getJSONArray("lessonsA");
                          productsB = json.getJSONArray("lessonsB");
 
+
+                         for (int i = 0; i <= productsA.length()-1; i++) {
+                             JSONObject array = productsA.getJSONObject(i);
+                             first = array.getString("first");
+                             second = array.getString("second");
+                             third = array.getString("third");
+                             fourth = array.getString("fourth");
+                             fifth = array.getString("fifth");
+                             sixth = array.getString("sixth");
+                             seventh = array.getString("seventh");
+                             date = array.getString("time");
+                             day = array.getString("day");
+                             daysA.add(new day(day, first, second, third, fourth, fifth,sixth,seventh,date));
+                         }
+
+
+                         //g = new groupss(daysA.get(0),daysA.get(1),daysA.get(2),daysA.get(3),daysA.get(4));
+
+                         for (int i = 0; i <= productsB.length()-1; i++) {
+                             JSONObject array = productsB.getJSONObject(i);
+                             first = array.getString("first");
+                             second = array.getString("second");
+                             third = array.getString("third");
+                             fourth = array.getString("fourth");
+                             fifth = array.getString("fifth");
+                             sixth = array.getString("sixth");
+                             seventh = array.getString("seventh");
+                             date = array.getString("time");
+                             day = array.getString("day");
+                             daysB.add(new day(day, first, second, third, fourth, fifth,sixth,seventh,date));
+
+                         }
+
+                         //ga = new groupss(daysB.get(0),daysB.get(1),daysB.get(2),daysB.get(3),daysB.get(4));
+                             /*for (int x = 0; x <=array.length(); x++){
+
+                                 //Log.e("shdaskj", xxx.toString());
+                             }
+                         }
+                             /*for (int x = 0; x <=array.length(); i++){
+                                 JSONObject xxx = array.getJSONObject(i);
+                                 Log.e("shdaskj", xxx.toString());
+                             }
+                         }
                          /*for (int i = 0; i < products.length(); i++) {
                              //JSONObject c = productsA.getJSONObject(i);
                                 //Log.e("ad",c.getString("day"));
@@ -154,22 +224,35 @@ public class settings extends AppCompatActivity {
             // dismiss the dialog after getting all products
             SharedPreferences.Editor editor = mSettings.edit();
             intent = new Intent(settings.this, MainActivity.class);
+            Gson gson = new Gson();
+
             switch (loader){
                 case "1401":
-                    editor.putString(APP_PREFERENCES_1401A, productsA.toString());
-                    editor.putString(APP_PREFERENCES_1401B, productsB.toString());
+                    editor.putString(APP_PREFERENCES_1401A, gson.toJson(daysA));
+                    editor.putString(APP_PREFERENCES_1401B, gson.toJson(daysB));
                     editor.apply();
-
                     break;
                 case "1501":
-                    editor.putString(APP_PREFERENCES_1501A, productsA.toString());
-                    editor.putString(APP_PREFERENCES_1501B, productsB.toString());
+                    editor.putString(APP_PREFERENCES_1501A, gson.toJson(daysA));
+                    editor.putString(APP_PREFERENCES_1501B, gson.toJson(daysB));
+                    editor.apply();
+                    break;
+                case "1301":
+                    editor.putString(APP_PREFERENCES_1301A, gson.toJson(daysA));
+                    editor.putString(APP_PREFERENCES_1301B, gson.toJson(daysB));
+                    editor.apply();
+                    break;
+                case "1601":
+                    editor.putString(APP_PREFERENCES_1601A, gson.toJson(daysA));
+                    editor.putString(APP_PREFERENCES_1601B, gson.toJson(daysB));
                     editor.apply();
                     break;
             }
             intent.putExtra("group",loader);
-            editor.putBoolean("FIRST",true);
+            editor.putString("FIRST",loader);
             editor.apply();
+            daysA.clear();
+            daysB.clear();
             pDialog.dismiss();
             startActivity(intent);
 

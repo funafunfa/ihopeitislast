@@ -6,14 +6,14 @@
     android:baselineAligned="false">
 
     <TextView
-        android:text="@string/fouth_day"
+        android:text="@string/Thursday"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/name"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:paddingTop="50px"/>
+        android:paddingTop="50px" />
 
     <TableLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:text="TextView"
+                android:text=""
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/first"
@@ -51,7 +51,7 @@
                 android:id="@+id/two" />
 
             <TextView
-                android:text="TextView"
+                android:text=""
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/second"
@@ -71,7 +71,7 @@
                 android:id="@+id/three" />
 
             <TextView
-                android:text="TextView"
+                android:text=""
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/third"
@@ -91,7 +91,7 @@
                 android:id="@+id/four" />
 
             <TextView
-                android:text="TextView"
+                android:text=""
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/fourth"
@@ -111,7 +111,7 @@
                 android:id="@+id/five" />
 
             <TextView
-                android:text="TextView"
+                android:text=""
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/fifth"
@@ -131,7 +131,7 @@
                 android:id="@+id/six" />
 
             <TextView
-                android:text="TextView"
+                android:text=""
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/sixth"
@@ -151,7 +151,7 @@
                 android:id="@+id/seven" />
 
             <TextView
-                android:text="TextView"
+                android:text=""
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/seventh"
