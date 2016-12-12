@@ -32,6 +32,9 @@ import static com.example.dmitriy.schedulenew.sub.day.daysA;
 import static com.example.dmitriy.schedulenew.sub.day.daysB;
 
 public class settings extends AppCompatActivity {
+
+    public static Spinner spinner = null;
+
     public static final String APP_PREFERENCES = "groups";
 
     public static final String APP_PREFERENCES_1401A = "1401A";
@@ -62,7 +65,7 @@ public class settings extends AppCompatActivity {
     public static SharedPreferences mSettings;
     public static String dataA, dataB;
    // public static groupss g, ga;
-
+    int selector = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,17 +74,21 @@ public class settings extends AppCompatActivity {
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         //mSettings = getSharedPreferences(APP_PREFERENCES_1501B, Context.MODE_PRIVATE);
 
-        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
+         spinner = (Spinner) findViewById(R.id.spinner);
 
         ArrayAdapter<?> adapter =
                 ArrayAdapter.createFromResource(this, R.array.groups, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+        if (mSettings.contains("position")) spinner.setSelection(mSettings.getInt("position", 0));
         try{
             Log.e("AGSKDAHSJ", mSettings.getString(APP_PREFERENCES_1401A, ""));
         }catch (NullPointerException e){
             e.printStackTrace();
         }
+
+
     }
 
     @Override
@@ -248,12 +255,21 @@ public class settings extends AppCompatActivity {
                     editor.apply();
                     break;
             }
+            selector = spinner.getSelectedItemPosition();
+            editor.putInt("position",selector);
+
+
+
             intent.putExtra("group",loader);
             editor.putString("FIRST",loader);
             editor.apply();
+
+
             daysA.clear();
             daysB.clear();
+
             pDialog.dismiss();
+
             startActivity(intent);
 
 
