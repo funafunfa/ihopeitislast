@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Розклад</string>
+    <string name="Wednesday">Середа</string>
+    <string name="action_settings">Налаштування</string>
+    <string name="fifth_day">П\'ятниця</string>
+    <string name="first_day">Понедiлок</string>
+    <string name="four"></string>
+    <string name="fouth_day">Четвер</string>
+    <string name="second_day">Вiвторок</string>
+    <string name="settings_text_group_spinner">Номер групи</string>
+    <string name="third_day">Середа</string>
+    <string name="title_activity_settings">Налаштування</string>
+    <string name="set_button">Обрати</string>
+    <string name="Friday">П\'ятниця</string>
+    <string name="Monday">Понедiлок</string>
+    <string name="Thursday">Четвер</string>
+    <string name="Tuesday">Вiвторок</string>
+    <string name="downolad">Завантажити</string>
+</resources>

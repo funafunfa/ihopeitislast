@@ -10,25 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.dmitriy.schedulenew.settings">
 
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:id="@+id/spinner"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="@string/set_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="110dp"
-        android:id="@+id/button"
-        android:onClick="onClick" />
-
     <TextView
         android:text="@string/settings_text_group_spinner"
         android:layout_width="wrap_content"
@@ -36,6 +17,74 @@
         android:id="@+id/textView"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="@string/set_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:onClick="onClick"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_marginBottom="11dp"
+        android:layout_alignBottom="@+id/button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/button"
+        android:layout_toStartOf="@+id/button" />
+
+    <CheckBox
+        android:text="@string/G1301"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="81dp"
+        android:id="@+id/checkBox2"
+        android:layout_below="@+id/button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <CheckBox
+        android:text="@string/G1401"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox3"
+        android:layout_below="@+id/checkBox2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <CheckBox
+        android:text="@string/G1501"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox"
+        android:layout_below="@+id/checkBox3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <CheckBox
+        android:text="@string/G1601"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox4"
+        android:layout_below="@+id/checkBox"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="@string/Download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:id="@+id/button2"
+        android:layout_below="@+id/checkBox4"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Расписание</string>
+    <string name="Friday">Пятница</string>
+    <string name="Monday">Понедельник</string>
+    <string name="Thursday">Четверг</string>
+    <string name="Tuesday">Вторник</string>
+    <string name="Wednesday">Среда</string>
+    <string name="action_settings">Настройки</string>
+    <string name="title_activity_settings">Настройки</string>
+    <string name="third_day">Среда</string>
+    <string name="settings_text_group_spinner">Номер группы</string>
+    <string name="second_day">Вторник</string>
+    <string name="fouth_day">Четверг</string>
+    <string name="first_day">Понедельник</string>
+    <string name="fifth_day">Пятница</string>
+    <string name="set_button">Выбрать</string>
+    <string name="downolad">Загрузить</string>
+</resources>

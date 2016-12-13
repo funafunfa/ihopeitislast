@@ -8,8 +8,9 @@ android {
         applicationId "com.example.dmitriy.schedulenew"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 2
-        versionName "0.2"
+        versionCode 4
+        versionName "0.3.1"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
