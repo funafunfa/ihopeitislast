@@ -206,6 +206,7 @@ public class wed extends Fragment {
         if(fifth.getText().equals(""))five.setText("");
         if(sixth.getText().equals(""))six.setText("");
         if(seventh.getText().equals(""))seven.setText("");
+        rootView.invalidate();
         return rootView;
     }
 

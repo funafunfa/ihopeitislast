@@ -90,7 +90,8 @@
     <string name="fouth_day">Thursday</string>
     <string name="fifth_day">Friday</string>
     <string name="settings_text_group_spinner">Group name</string>
-
+    <string name="gameover1">Open "Settings"</string>
+    <string name="gameover2">Select group</string>
     <string-array name="groups">
         <item>1301</item>
         <item>1401</item>
@@ -109,6 +110,6 @@
     <string name="Wednesday">Wednesday</string>
     <string name="Thursday">Thursday</string>
     <string name="Friday">Friday</string>
-    <string name="select">Select</string>
     <string name="downolad">Download</string>
+    <string name="select">Select</string>
 </resources>

@@ -34,6 +34,7 @@ import static com.example.dmitriy.schedulenew.settings.APP_PREFERENCES_1401A;
 import static com.example.dmitriy.schedulenew.settings.APP_PREFERENCES_1401B;
 import static com.example.dmitriy.schedulenew.settings.APP_PREFERENCES_1501A;
 import static com.example.dmitriy.schedulenew.settings.APP_PREFERENCES_1501B;
+import static com.example.dmitriy.schedulenew.settings.APP_PREFERENCES_fisrt;
 import static com.example.dmitriy.schedulenew.settings.mSettings;
 
 public class MainActivity extends AppCompatActivity {
@@ -51,19 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
         try{
 
-            if ((mSettings.contains(APP_PREFERENCES_1401A)) | (mSettings.contains(APP_PREFERENCES_1401B))){
-                //Log.e("A1", mSettings.getString(APP_PREFERENCES_1401A, ""));
-                //Log.e("B1", mSettings.getString(APP_PREFERENCES_1401B, ""));
-            } else {
-                Log.e("Mission failed","try next time");
-            }
-
-            if ((mSettings.contains(APP_PREFERENCES_1501A)) | (mSettings.contains(APP_PREFERENCES_1501B))) {
-                //Log.e("C1", mSettings.getString(APP_PREFERENCES_1501A, ""));
-                //Log.e("D1", mSettings.getString(APP_PREFERENCES_1501B, ""));
-            } else {
-                Log.e("Mission faile!!d","try next time");
-            }
 
 
         }catch (NullPointerException e){
@@ -97,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
         Date d = new Date();
 
         String dayOfTheWeek = sdf.format(d);
-
         if (savedInstanceState == null) {
             switch (dayOfTheWeek){
                 case ("Monday"):case ("понедельник"):
@@ -121,7 +108,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        /*if(mSettings.getString("first", "").equals("yes")){
+            Log.e("NO", "NOOOOOOOOOOOOOOOO");
+        }else{
+            Intent intent = new Intent(MainActivity.this, settings.class);
+            startActivity(intent);
 
+        }*/
     }
     public static String backdata = null;
 
@@ -149,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick(MenuItem item) {
         Intent intent = new Intent(MainActivity.this, settings.class);
+        this.finish();
         startActivity(intent);
     }
 

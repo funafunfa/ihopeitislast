@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 
 import com.example.dmitriy.schedulenew.sub.JSONParser;
@@ -26,6 +27,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 //import static com.example.dmitriy.schedulenew.sub.day.days;
 import static com.example.dmitriy.schedulenew.sub.day.daysA;
@@ -36,7 +38,7 @@ public class settings extends AppCompatActivity {
     public static Spinner spinner = null;
 
     public static final String APP_PREFERENCES = "groups";
-
+    public static final String APP_PREFERENCES_fisrt = "first";
     public static final String APP_PREFERENCES_1401A = "1401A";
     public static final String APP_PREFERENCES_1401B = "1401B";
 
@@ -64,12 +66,22 @@ public class settings extends AppCompatActivity {
     public static String loader;
     public static SharedPreferences mSettings;
     public static String dataA, dataB;
+
+
+    static ArrayList<String> arrayListx;
+    static CheckBox c1501, c1301, c1401, c1601;
    // public static groupss g, ga;
     int selector = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+
+        c1501 = (CheckBox)findViewById(R.id.checkBox);
+        c1301 = (CheckBox)findViewById(R.id.checkBox2);
+        c1401 = (CheckBox)findViewById(R.id.checkBox3);
+        c1601 = (CheckBox)findViewById(R.id.checkBox4);
         Log.d("me", "here");
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         //mSettings = getSharedPreferences(APP_PREFERENCES_1501B, Context.MODE_PRIVATE);
@@ -115,9 +127,10 @@ public class settings extends AppCompatActivity {
 
     static SharedPreferences preference;
     static JSONObject json;
-
     public void onClick(View view) {
 
+        SharedPreferences.Editor editor = mSettings.edit();
+        intent = new Intent(settings.this, MainActivity.class);
         final Spinner spinner = (Spinner)findViewById(R.id.spinner);
         try {
             Log.e("ROCK", spinner.getSelectedItem().toString());
@@ -125,10 +138,49 @@ public class settings extends AppCompatActivity {
             loader = spinner.getSelectedItem().toString();
             load.execute(loader);
 
+
+            selector = spinner.getSelectedItemPosition();
+            editor.putInt("position",selector);
+
+
+
+            intent.putExtra("group",loader);
+            editor.putString("FIRST",loader);
+            editor.apply();
+
+
+            daysA.clear();
+            daysB.clear();
+
+            //pDialog.dismiss();
+            this.finish();
+            startActivity(intent);
+
         } catch (EnumConstantNotPresentException e){
             e.printStackTrace();
         }
 
+    }
+
+
+    static ArrayList<String> stringArrayList = new ArrayList<>();
+
+    public void onDownload(View view) {
+        try {
+            if (c1501.isChecked()) stringArrayList.add("1501");
+            if (c1401.isChecked()) stringArrayList.add("1401");
+            if (c1301.isChecked()) stringArrayList.add("1301");
+            if (c1601.isChecked()) stringArrayList.add("1601");
+            LoadAllProducts loadAllProducts = new LoadAllProducts();
+            for (int i = 0; i <= stringArrayList.size()-1; i++) {
+                Log.e("ALL SHIT", stringArrayList.get(i));
+                loadAllProducts.execute(stringArrayList.get(i)).get();
+            }
+        }catch (NullPointerException | ExecutionException | InterruptedException e){
+            e.printStackTrace();
+        }
+
+        stringArrayList.clear();
     }
 
 
@@ -140,7 +192,7 @@ public class settings extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(settings.this);
-            pDialog.setMessage("Loading products. Please wait...");
+            pDialog.setMessage("Loading. Please wait...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();
@@ -167,6 +219,7 @@ public class settings extends AppCompatActivity {
 
                          for (int i = 0; i <= productsA.length()-1; i++) {
                              JSONObject array = productsA.getJSONObject(i);
+                             //Log.e("sda", params.get(0).toString());
                              first = array.getString("first");
                              second = array.getString("second");
                              third = array.getString("third");
@@ -232,49 +285,34 @@ public class settings extends AppCompatActivity {
             SharedPreferences.Editor editor = mSettings.edit();
             intent = new Intent(settings.this, MainActivity.class);
             Gson gson = new Gson();
-
+            loader = group;
             switch (loader){
                 case "1401":
                     editor.putString(APP_PREFERENCES_1401A, gson.toJson(daysA));
                     editor.putString(APP_PREFERENCES_1401B, gson.toJson(daysB));
+                    editor.putString(APP_PREFERENCES_fisrt, "yes");
                     editor.apply();
                     break;
                 case "1501":
                     editor.putString(APP_PREFERENCES_1501A, gson.toJson(daysA));
                     editor.putString(APP_PREFERENCES_1501B, gson.toJson(daysB));
+                    editor.putString(APP_PREFERENCES_fisrt, "yes");
                     editor.apply();
                     break;
                 case "1301":
                     editor.putString(APP_PREFERENCES_1301A, gson.toJson(daysA));
                     editor.putString(APP_PREFERENCES_1301B, gson.toJson(daysB));
+                    editor.putString(APP_PREFERENCES_fisrt, "yes");
                     editor.apply();
                     break;
                 case "1601":
                     editor.putString(APP_PREFERENCES_1601A, gson.toJson(daysA));
                     editor.putString(APP_PREFERENCES_1601B, gson.toJson(daysB));
+                    editor.putString(APP_PREFERENCES_fisrt, "yes");
                     editor.apply();
                     break;
             }
-            selector = spinner.getSelectedItemPosition();
-            editor.putInt("position",selector);
-
-
-
-            intent.putExtra("group",loader);
-            editor.putString("FIRST",loader);
-            editor.apply();
-
-
-            daysA.clear();
-            daysB.clear();
-
             pDialog.dismiss();
-
-            startActivity(intent);
-
-
-
-
             // updating UI from Background Thread
 
 

@@ -210,7 +210,7 @@ public class mon extends Fragment {
         if(sixth.getText().equals(""))six.setText("");
         if(seventh.getText().equals(""))seven.setText("");
 
-
+        rootView.invalidate();
         return rootView;
 
     }
